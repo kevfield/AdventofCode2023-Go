@@ -1,1 +1,1 @@
-# AdventofCode2023-Go-
+# AdventofCode2023-Go
