@@ -14,7 +14,7 @@ func main() {
 	// pull in puzzle input
 	puzzleInput, _ := readFile(inputFile)
 
-	//fmt.Println("Part 1 = ", getfirstLast(puzzleInput))
+	fmt.Println("Part 1 = ", getfirstLast(puzzleInput))
 	part2Calc := detectintsasText(puzzleInput)
 	fmt.Println("Part2 = ", getfirstLast(part2Calc))
 
@@ -67,11 +67,9 @@ func detectintsasText(detectInput []string) []string {
 		}
 		if foundSomething == 0 {
 			newSlice = append(newSlice, newInput)
-
 		} else {
 			foundSomething = 0
 			newSlice = append(newSlice, newOutput)
-			fmt.Println(newSlice)
 		}
 	}
 
