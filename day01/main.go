@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"regexp"
 	"strconv"
+	"strings"
 )
 
 func main() {
@@ -13,7 +14,10 @@ func main() {
 	// pull in puzzle input
 	puzzleInput, _ := readFile(inputFile)
 
-	fmt.Println("Part 1 = ", getfirstLast(puzzleInput))
+	//fmt.Println("Part 1 = ", getfirstLast(puzzleInput))
+	part2Calc := detectintsasText(puzzleInput)
+	fmt.Println("Part2 = ", getfirstLast(part2Calc))
+
 }
 
 func getfirstLast(getfLinput []string) int {
@@ -33,4 +37,43 @@ func getfirstLast(getfLinput []string) int {
 	}
 	return totalCount
 
+}
+
+func detectintsasText(detectInput []string) []string {
+	var newSlice []string
+	var newInput, newOutput string
+	foundSomething := 0
+	numberMapping := map[string]string{
+		"one":   "o1e",
+		"two":   "t2o",
+		"three": "t3e",
+		"four":  "f4r",
+		"five":  "f5e",
+		"six":   "s6x",
+		"seven": "s7n",
+		"eight": "e8t",
+		"nine":  "n9e",
+	}
+
+	for i := 0; i < len(detectInput); i++ {
+		newInput = detectInput[i]
+		for key, val := range numberMapping {
+			if strings.Contains(newInput, key) {
+				//newOutput = strings.Replace(newInput, key, val, -1)
+				newOutput = strings.ReplaceAll(newInput, key, val)
+				newInput = newOutput
+				foundSomething++
+			}
+		}
+		if foundSomething == 0 {
+			newSlice = append(newSlice, newInput)
+
+		} else {
+			foundSomething = 0
+			newSlice = append(newSlice, newOutput)
+			fmt.Println(newSlice)
+		}
+	}
+
+	return newSlice
 }
